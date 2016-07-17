@@ -1,9 +1,7 @@
-package com.example;
+package com.example.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+
 @Entity
 public class Coche {
     @Id
@@ -15,6 +13,10 @@ public class Coche {
     private Long matricula;
     private Integer precio;
     private Integer añoFabricacion;
+
+
+    @ManyToOne
+    private Persona propietario;
 
     public Long getMatricula() {
         return matricula;
@@ -58,6 +60,14 @@ public class Coche {
         this.añoFabricacion = añoFabricacion;
     }
 
+    public Persona getPropietario() {
+        return propietario;
+    }
+
+    public void setPropietario(Persona propietario) {
+        this.propietario = propietario;
+    }
+
     @Override
     public String toString() {
         return "Coche{" +
@@ -95,4 +105,5 @@ public class Coche {
         result = 31 * result + (getAñoFabricacion() != null ? getAñoFabricacion().hashCode() : 0);
         return result;
     }
+
 }
